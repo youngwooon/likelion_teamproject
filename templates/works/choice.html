@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Tournament</title>
+    <script src="{% static 'works/js/choice.js' %}"></script>
+</head>
+<body>
+    <h1>Menu Tournament</h1>
+    <script type="text/javascript">
+        let refs1 = [];
+        {% for food_ref in result.keys %}
+        refs1.push('{{food_ref}}');
+        {% endfor %}
+    </script>
+    {% comment %} <input type="button" value="시작" onclick="start()" /> {% endcomment %}
+    <div id="div_img1"><img id='img1' src='https://maps.googleapis.com/maps/api/place/photo?photoreference={{first_img_ref}}&maxwidth=600&key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8' onclick='select1()' /></div>
+    <div id="div_img2"><img id='img2' src='https://maps.googleapis.com/maps/api/place/photo?photoreference={{second_img_ref}}&maxwidth=600&key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8' onclick='select2()' /></div>
+    
+    <form id="end" action="{% url 'result' %}" method="POST"> 
+    {% csrf_token %}
+	<input type="hidden" id="selected_photo_ref" name="selected_photo_ref" value=""/> 
+    </form>
+    {% comment %} <img id="img1" src="https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(0,1) + '&maxwidth=600&key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8" onclick="select1()"/>
+    <img id="img2" src="https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(-1) + '&maxwidth=600&key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8" onclick="select2()"/> {% endcomment %}
+</body>
+</html>

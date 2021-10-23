@@ -1,0 +1,6 @@
+0 mainfood
+1 etc
+2 outside
+3 drink
+4 sidefood
+5 interior

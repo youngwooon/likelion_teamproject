@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Road to my Restaurant</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'works/css/result.css' %}" />
+    <script src="{% static 'works/js/result.js' %}"></script>
+    <script type="text/javascript">
+    let origin_lat = '{{ origin_lat }}'
+    let origin_lng = '{{ origin_lng }}'
+    let destination_lat = '{{ destination_lat }}'
+    let destination_lng = '{{ destination_lng }}'
+    </script>
+  </head>
+  <body>
+  <p id="orgn_lat">가게명: {{ name }}</p>
+    <div id="floating-panel">
+      <b>Mode of Travel: </b>
+      <select id="mode">
+        <option value="TRANSIT">Transit</option>
+        <option value="WALKING">Walking</option>
+      </select>
+    </div>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8&callback=initMap&v=weekly"
+      async
+    ></script>
+    <a href="{% url 'home' %}">홈으로</a>
+  </body>
+</html>
