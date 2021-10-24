@@ -30,12 +30,12 @@ def get_food_refs(request):
     input_radius = request.POST['radius']
     input_round = int(request.POST['round'])
 
-    # place id 수집
+    # 1. place id 수집
     ten_random_place_ids = get_ten_random_place_ids(input_location, input_radius, input_max_price=None, input_open_now=None)
     pprint.pprint(ten_random_place_ids)
     print(len(ten_random_place_ids))
 
-    # photo refs 수집 및 셔플
+    # 2. photo refs 수집 및 셔플
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(save_photo_refs, ten_random_place_ids)
     photo_refs_all = sum(raw_data.values(), [])
@@ -43,19 +43,19 @@ def get_food_refs(request):
     print(photo_refs_all)
     print(len(photo_refs_all))
 
-    # 음식사진 선별하여 저장
+    # 3. 음식사진 선별하여 저장
 
-    #### 1개씩 선별 ####
+    #### 1개씩 선별하는 경우 ####
     # save_food_refs(photo_refs_all, input_round)
 
-    #### 2개씩 선별 ####
+    #### 2개 이상씩 선별하는 경우 (Thread) ####
     with concurrent.futures.ThreadPoolExecutor() as executor:
         split_num = round(len(photo_refs_all)/2)
         arguments = [[photo_refs_all[:split_num], photo_refs_all[split_num:]],
             [input_round,input_round]]
         executor.map(save_food_refs, *arguments)
     
-    # 결과값 변수에 지정
+    # 4. 결과값 변수에 지정
     new_food_refs = dict(list(food_refs.items())[0:input_round])
     first_img_ref = list(new_food_refs.keys())[0]
     second_img_ref = list(new_food_refs.keys())[-1]
@@ -93,11 +93,11 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price=None,
         type = 'restaurant'
     )
     
-    #### 첫 페이지만 ####
+    #### 첫 페이지만 수집하는 경우 (최대 20개 장소) ####
     for place in places_result['results']:
         place_ids.append(place['place_id'])
 
-    #### 모든 페이지 ####
+    #### 모든 페이지 수집하는 경우 (최대 60개 장소) ####
     # while True:
     #     for place in places_result['results']:
     #         place_ids.append(place['place_id'])
@@ -129,7 +129,7 @@ def save_photo_refs(my_place_id):
     except:
         pass
 
-# teachable machine 함수
+# teachable machine
 def is_food(photo_ref):
     model = load_model('keras_model.h5')
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
