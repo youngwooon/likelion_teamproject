@@ -1,0 +1,22 @@
+.container {
+    text-align: center;
+}
+
+.form {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#search_input, #radius{
+    width: 30%;
+    height: 2rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+#max_price, #round {
+    width: 10%;
+    height: 2rem;
+    font-size: 1rem;
+    text-align: center;
+}

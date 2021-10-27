@@ -1,22 +1,18 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Road to my Restaurant</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'works/css/result.css' %}" />
-    <script src="{% static 'works/js/result.js' %}"></script>
-    <script type="text/javascript">
+{% block title %}Road to my Restaurant{% endblock %}
+{% block script %}
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'works/css/result.css' %}" />
+  <script src="{% static 'works/js/result.js' %}"></script>
+  <script type="text/javascript">
     let origin_lat = '{{ origin_lat }}'
     let origin_lng = '{{ origin_lng }}'
     let destination_lat = '{{ destination_lat }}'
     let destination_lng = '{{ destination_lng }}'
-    </script>
-  </head>
-  <body>
+  </script>
+{% endblock %}
+{% block content %}
   <p id="orgn_lat">가게명: {{ name }}</p>
     <div id="floating-panel">
       <b>Mode of Travel: </b>
@@ -33,5 +29,4 @@
       async
     ></script>
     <a href="{% url 'home' %}">홈으로</a>
-  </body>
-</html>
+{% endblock %}

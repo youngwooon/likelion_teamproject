@@ -29,9 +29,14 @@ def get_food_refs(request):
     input_location = f'{origin_lat}, {origin_lng}'
     input_radius = request.POST['radius']
     input_round = int(request.POST['round'])
+    input_max_price = int(request.POST['max_price'])
+    input_open_now = bool(request.POST.get('open_now'))
+
+    print(input_max_price)
+    print(input_open_now)
 
     # 1. place id 수집
-    ten_random_place_ids = get_ten_random_place_ids(input_location, input_radius, input_max_price=None, input_open_now=None)
+    ten_random_place_ids = get_ten_random_place_ids(input_location, input_radius, input_max_price, input_open_now)
     pprint.pprint(ten_random_place_ids)
     print(len(ten_random_place_ids))
 
@@ -83,7 +88,7 @@ def result(request):
     }
     return render(request, 'works/result.html', context)
 
-def get_ten_random_place_ids(input_location, input_radius, input_max_price=None, input_open_now=None):
+def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, input_open_now=False):
     place_ids = []
     places_result = gmaps.places_nearby(
         location=input_location,
@@ -92,7 +97,7 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price=None,
         open_now = input_open_now,
         type = 'restaurant'
     )
-    
+
     #### 첫 페이지만 수집하는 경우 (최대 20개 장소) ####
     for place in places_result['results']:
         place_ids.append(place['place_id'])
