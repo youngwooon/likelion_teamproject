@@ -11,7 +11,8 @@ import requests
 import concurrent.futures
 import imagehash # pip install imagehash
 
-from works.models import PlaceInfo, Food, NoFood
+from works.models import PlaceInfo, Food, NoFood, PlaceSelected
+from django.contrib.auth.models import User
 
 my_api_key='AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8'
 gmaps = googlemaps.Client(key=my_api_key)
@@ -86,6 +87,8 @@ def result(request):
         'destination_lng': destination_lng,
         'name': name
     }
+    if request.user.is_authenticated:
+        PlaceSelected.objects.update_or_create(name=name, user=request.user)
     return render(request, 'works/result.html', context)
 
 def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, input_open_now=False):

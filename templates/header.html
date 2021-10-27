@@ -1,2 +1,7 @@
-회원가입
-로그인
+<a href="{% url 'home' %}">Home</a>
+{% if user.is_authenticated %}
+    <a href="{% url 'accounts:logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+    <a href="{% url 'accounts:signup' %}">Signup</a>
+{% endif %}
