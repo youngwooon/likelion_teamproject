@@ -26,8 +26,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-<h1 class="display-1" id="title-1">Food Tournament Near Me</h1>
+<div class="container-fluid" id="content-all">
+<div class="div_title">
+    <h1 class="display-1" id="title-1">Food Tournament Near Me</h1>
+</div>
+<div class="div_form">
 <form action="{% url 'choice' %}" method="POST">
     {% csrf_token %}
     <!-- Autocomplete location search input -->
@@ -64,5 +67,5 @@
             <input type="submit" value="Search!" />
     </div>
 </form>
-<div>
+</div>
 {% endblock %}
