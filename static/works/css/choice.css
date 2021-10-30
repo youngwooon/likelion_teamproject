@@ -1,7 +1,13 @@
-#div_img1 {
+#div_img1, #div_img2 {
     display: inline-block;
+    width: 120px;
+    min-height: 120px;
+    max-height: auto;
+    margin: 3px;
+    padding: 3px;
 }
 
-#div_img2 {
-    display: inline-block;
+#img1, #img2 {
+    max-width: 100%;
+    height: auto;
 }

@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+#title-1 {
+    height: 50px;
+}
+
 .form {
     padding-top: 10px;
     padding-bottom: 10px;

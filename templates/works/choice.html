@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block title %}Menu Tournament{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'works/css/choice.css' %}" />{% endblock %}
 {% block script %}<script src="{% static 'works/js/choice.js' %}"></script>{% endblock %}
@@ -19,6 +18,7 @@
     <div class="col" id="div_img2">
       <img id='img2' src='https://maps.googleapis.com/maps/api/place/photo?photoreference={{second_img_ref}}&maxwidth=600&key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8' onclick='select2()' />
     </div>
+    <button id="button1" onclick="cancel();">BACK</button>
   </div>
     <form id="end" action="{% url 'result' %}" method="POST"> 
         {% csrf_token %}

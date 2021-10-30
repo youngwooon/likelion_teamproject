@@ -27,7 +27,7 @@
 
 {% block content %}
 <div class="container">
-<h1 class="display-1">Food Tournament Near Me</h1>
+<h1 class="display-1" id="title-1">Food Tournament Near Me</h1>
 <form action="{% url 'choice' %}" method="POST">
     {% csrf_token %}
     <!-- Autocomplete location search input -->
