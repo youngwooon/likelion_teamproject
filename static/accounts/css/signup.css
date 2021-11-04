@@ -46,10 +46,15 @@ body{
 }
 #signup-button{
 	font-size: 1rem;
+	background: none;
 	color:#cda45e;
 	border: 1.5px solid #cda45e;
 	border-radius: 24px;
 	padding: 5px 20px;
 	width: 150px;
-	color:#cda45e;
+}
+
+#signup-button:hover{
+	color:black;
+	background-color: #cda45e;
 }

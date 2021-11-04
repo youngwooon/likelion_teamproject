@@ -33,6 +33,8 @@ def get_food_refs(request):
     input_max_price = request.POST['max_price']
     input_open_now = bool(request.POST.get('open_now'))
 
+    print(input_max_price)
+    print(input_open_now)
     # 1. place id 수집
     ten_random_place_ids = get_ten_random_place_ids(input_location, input_radius, input_max_price, input_open_now)
     pprint.pprint(ten_random_place_ids)

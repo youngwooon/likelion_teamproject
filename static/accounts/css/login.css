@@ -87,3 +87,7 @@ body{
 #log-1{
 	color:#cda45e;
 }
+
+#log-1:hover{
+	color:black;
+}
