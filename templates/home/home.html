@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Food Tournament Near Me{% endblock %}
+{% block title %}Menus Tournament Nearby{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}" />{% endblock %}
 {% block script %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -26,46 +26,51 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid" id="content-all">
-<div class="div_title">
-    <h1 class="display-1" id="title-1">Food Tournament Near Me</h1>
-</div>
-<div class="div_form">
-<form action="{% url 'choice' %}" method="POST">
-    {% csrf_token %}
-    <!-- Autocomplete location search input -->
-    <div class="form-group">
-        <div class="form">
-            <label for="location"></label>
-            <input type="text" class="form-control" id="search_input" placeholder="Input Your Location" required />
-            <input type="hidden" name="latitude" id="loc_lat" />
-            <input type="hidden" name="longitude" id="loc_long" />
-        </div>
-        <div class="form">
-            <label for="radius"></label>
-            <input type="text" id="radius" name="radius" placeholder="Radius" required/>
-        </div>
-        <div class="form">
-            <label for="round">Round of </label>
-            <select id="round" name="round" required>
-                <option value="4">4 (Semi-Final)</option>
-                <option value="8">8 (Quarter-Final)</option>
-            </select>
-        </div>
-        <div class="form">
-            <label for="max_price">Max price:</label>
-            <select id="max_price" name="max_price" required>
-                <option value="2">Affordable</option>
-                <option value="3">Medium</option>
-                <option value="4">High-priced</option>
-            </select>
-        </div>
-        <div class="form">
-            <label for="open_now"></label>
-            Open Now<input type="checkbox" id="open_now" name="open_now" value="True" />
-        </div>
-            <input type="submit" value="Search!" />
+<div class="row">
+<div class="column">
+    <div class="title">
+        <h1><span class="menu">Menus</span> <span class="tournament">Tournament</span> Nearby<br>
+            <span class="subtitle">Choose 1 <span class="menu">Menu</span> from Random Menus nearby</span>
+        </h1>
     </div>
-</form>
+</div>
+<div class="column">
+    <div class="form">
+    <form action="{% url 'choice' %}" method="POST">
+        {% csrf_token %}
+        <!-- Autocomplete location search input -->
+        <div class="form-group">
+            <div class="form">
+                <label for="location"></label>
+                <input type="text" class="form-control" id="search_input" placeholder="Input Your Location" required />
+                <input type="hidden" name="latitude" id="loc_lat" />
+                <input type="hidden" name="longitude" id="loc_long" />
+            </div>
+            <div class="form">
+                <label for="radius"></label>
+                <input type="text" id="radius" name="radius" placeholder="Radius" required/>
+            </div>
+            <div class="form">
+                <label for="round">Round of </label>
+                <select id="round" name="round" required>
+                    <option value="4">4 (Semi-Final)</option>
+                    <option value="8">8 (Quarter-Final)</option>
+                </select>
+            </div>
+            <div class="form">
+                <label for="max_price">Max price:</label>
+                <select id="max_price" name="max_price" required>
+                    <option value="2">Affordable</option>
+                    <option value="3">Medium</option>
+                    <option value="4">High-priced</option>
+                </select>
+            </div>
+            <div class="form">
+                <label for="open_now">Open Now</label>
+                <input type="checkbox" id="open_now" name="open_now" value="True" />
+            </div>
+                <input type="submit" value="Search!" />
+        </div>
+    </form>
 </div>
 {% endblock %}

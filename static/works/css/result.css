@@ -1,28 +1,61 @@
 /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-       #map {
-        height: 50%;
-        width: 50%
-      }
-      
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: "Roboto", "sans-serif";
-        line-height: 30px;
-        padding-left: 10px;
-      }
+* element that contains the map. */
+#map {
+  height: 50%;
+  width: 50%
+}
+
+.content {
+  text-align: -webkit-center;
+  height: 70%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+a{
+  color: #cda45e;
+  text-decoration: none;
+  text-align: center;
+}
+
+#name{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  color: #cda45e;
+  padding-top:5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+}
+
+#floating-panel {
+  position: relative;
+  width: fit-content;
+  top: 5px;
+  left: 15%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+#return-btn{
+  width: 90px;
+  border:1.8px solid #cda45e;
+  border-radius: 24px;
+  background: none;
+  color: white;
+  text-align: center;
+  display: block;
+  padding: 5px;
+  margin-top: 1rem;
+}

@@ -1,17 +1,85 @@
-.div_title, .div_form {
-    margin-top: 100px;
+body{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80");
+    background-repeat : no-repeat;
+    background-size : cover;
+    
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+    padding-left: 15%;
+    padding-right: 0;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	margin:0px;
+	padding:0px;
+}
+
+.column {
+    flex: 50%;
+    padding: 15px;
     text-align: center;
 }
 
-.form {
-    margin-top: 10px;
-    text-align: center;
+.row {
+    display: block;
 }
 
-.container-fluid {
+.title h1 {
+    text-transform: capitalize;
+    color: #cda45e;
+    font-size: 3rem;
+}
+
+.title h1:before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    content: " ";
+    background-color: #c50000;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 3em;
+    padding-left: 0.25em;
+    color:white;
+    padding-bottom: 10px;
+}
+
+label {
+    color: white;
+}
+
+.alt-two h1 {
+text-align:center;
+}
+.alt-two h1:before {
+left:50%; margin-left:-30px;
+}
+
+.form-group {
+    margin: auto;
+    border: solid 1px;
     text-align: center;
-  /* Set a specific height */
-    height: 100%;
+
+}
+.form input {
+    border-color: #cda45e;
+	background: none;
+	display: white;
+	margin-top: 10px;
+	text-align: center;
+	border: 1.5px solid #cda45e;
+	padding: 5px 20px;
+	width: 250px;
+	outline:none;
+	border-radius: 24px;
+	transition: 0.25s;
+    color: white;
 }
 
 #search_input, #radius{
@@ -28,6 +96,18 @@
     text-align: center;
 }
 
-body, html {
-    height: 100%;
+#nearby {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 500px) {
+    .row {
+        display: block;
+        text-align: center;
+    }
+
+    span .menu:after, span .tournament:after {
+        content: "\A";
+        white-space: pre;
+    }
 }

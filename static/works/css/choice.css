@@ -1,13 +1,77 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.display-1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3rem;
+    color: #cda45e;
+    padding-top:5rem;
+    text-align: center;
+}
+
+.container-fluid {
+    text-align: center;
+}
+
+.btn_back {
+    width: auto;
+    display:block;
+    margin-left: 10%;
+    border:1.5px solid #cda45e;
+    border-radius: 24px;
+    background: none;
+    text-align: center;
+    color: #cda45e;
+    font-size: 1rem;
+}
+
 #div_img1, #div_img2 {
     display: inline-block;
-    width: 120px;
-    min-height: 120px;
-    max-height: auto;
+    width: 50%;
+    height: 50rem;
     margin: 3px;
     padding: 3px;
+    justify-content: center;
 }
 
 #img1, #img2 {
-    max-width: 100%;
+    width: 70%;
     height: auto;
+}
+
+#img1{
+    padding-left: 15%;
+}
+
+#img2{
+    padding-left: 5%;
+}
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+    flex: 50%;
+    padding: 15px;
+}
+
+.row {
+    display: flex;
+    text-align: center;
+}
+
+/* Clear floats after image containers */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+@media screen and (max-width: 500px) {
+    .row {
+        display: block;
+        text-align: center;
+    }
 }

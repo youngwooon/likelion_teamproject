@@ -14,7 +14,7 @@ import imagehash # pip install imagehash
 from works.models import PlaceInfo, Food, NoFood, PlaceSelected
 from django.contrib.auth.models import User
 
-my_api_key='AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8'
+my_api_key='AIzaSyC7b2YqZPAx6_PSUGlSuXHGsYPJtA7mxxA'
 gmaps = googlemaps.Client(key=my_api_key)
 
 def get_food_refs(request):
@@ -30,11 +30,8 @@ def get_food_refs(request):
     input_location = f'{origin_lat}, {origin_lng}'
     input_radius = request.POST['radius']
     input_round = int(request.POST['round'])
-    input_max_price = int(request.POST['max_price'])
+    input_max_price = request.POST['max_price']
     input_open_now = bool(request.POST.get('open_now'))
-
-    print(input_max_price)
-    print(input_open_now)
 
     # 1. place id 수집
     ten_random_place_ids = get_ten_random_place_ids(input_location, input_radius, input_max_price, input_open_now)
@@ -93,6 +90,7 @@ def result(request):
 
 def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, input_open_now=False):
     place_ids = []
+    ten_random_place_ids = []
     places_result = gmaps.places_nearby(
         location=input_location,
         radius = input_radius,
@@ -100,6 +98,11 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, in
         open_now = input_open_now,
         type = 'restaurant'
     )
+
+    print(input_location)
+    print(input_radius)
+    print(input_max_price)
+    print(input_open_now)
 
     #### 첫 페이지만 수집하는 경우 (최대 20개 장소) ####
     for place in places_result['results']:
@@ -116,7 +119,8 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, in
     #         continue
     #     else:
     #         break
-
+    print(len(place_ids))
+    print(len(place_ids))
     ten_random_place_ids = random.sample(place_ids, 10)
     return ten_random_place_ids
 

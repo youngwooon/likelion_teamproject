@@ -13,20 +13,25 @@
   </script>
 {% endblock %}
 {% block content %}
-  <p id="orgn_lat">가게명: {{ name }}</p>
-    <div id="floating-panel">
-      <b>Mode of Travel: </b>
-      <select id="mode">
-        <option value="TRANSIT">Transit</option>
-        <option value="WALKING">Walking</option>
-      </select>
-    </div>
-    <div id="map"></div>
+<div id="name">{{ name }}</div>
+<div class="content">
+  <div id="floating-panel">
+    <b>Mode of Travel: </b>
+    <select id="mode">
+      <option value="TRANSIT">Transit</option>
+      <option value="WALKING">Walking</option>
+    </select>
+  </div>
+  <div id="map"></div>
+  <div id="return-btn">
+    <a href="{% url 'home' %}">HOME</a>
+  </div>
+</div>
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8&callback=initMap&v=weekly"
-      async
-    ></script>
-    <a href="{% url 'home' %}">Home</a>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8&callback=initMap&v=weekly"
+    async
+  ></script><br>
+</div>
 {% endblock %}

@@ -1,3 +1,55 @@
-.signup {
-    margin: 50px;
+body{
+	background-color:black;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	margin:0px;
+	padding:0px;
+}
+
+.box{
+	width: 300px;
+	height: 550px;
+	position: absolute;
+	padding: 1px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: none;
+	text-align: center;
+	/*border: 1px solid #cda45e;*/
+}
+
+.box h1{
+	color: #cda45e;
+	padding: 7%;
+}
+#signup-1, #signup-2, #signup-3{
+	font-size: 1rem;
+	font-family: Arial, sans-serif;
+	color: #cda45e;
+}
+.box input[type="text"], .box input[type="password"], .box input[type="email"]{
+	border-color: #cda45e;
+	background: none;
+	display: white;
+	margin-top: 10px;
+	text-align: center;
+	border: 1.5px solid #cda45e;
+	padding: 5px 20px;
+	width: 250px;
+	outline:none;
+	border-radius: 24px;
+	transition: 0.25s;
+	color: white;
+}
+.box input[type = "submit"]:hover{
+	background: #cda45e;
+}
+#signup-button{
+	font-size: 1rem;
+	color:#cda45e;
+	border: 1.5px solid #cda45e;
+	border-radius: 24px;
+	padding: 5px 20px;
+	width: 150px;
+	color:#cda45e;
 }
