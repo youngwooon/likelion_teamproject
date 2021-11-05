@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 class PlaceInfo(models.Model):
     place_id = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=50)
+    vicinity = models.CharField(max_length=50)
     lat = models.CharField(max_length=50)
     lng = models.CharField(max_length=50)
 
@@ -15,5 +16,6 @@ class NoFood(models.Model):
 
 class PlaceSelected(models.Model):
     name = models.CharField(max_length=50)
+    vicinity = models.CharField(max_length=50)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

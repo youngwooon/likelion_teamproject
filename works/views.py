@@ -79,15 +79,17 @@ def result(request):
     destination_lat = PlaceInfo.objects.get(place_id=selected_place_id).lat
     destination_lng = PlaceInfo.objects.get(place_id=selected_place_id).lng
     name = PlaceInfo.objects.get(place_id=selected_place_id).name
+    vicinity = PlaceInfo.objects.get(place_id=selected_place_id).vicinity
     context = {
         'origin_lat': origin_lat,
         'origin_lng': origin_lng,
         'destination_lat': destination_lat,
         'destination_lng': destination_lng,
-        'name': name
+        'name': name,
+        'vicinity': vicinity
     }
     if request.user.is_authenticated:
-        PlaceSelected.objects.update_or_create(name=name, user=request.user)
+        PlaceSelected.objects.update_or_create(name=name, vicinity=vicinity, user=request.user)
     return render(request, 'works/result.html', context)
 
 def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, input_open_now=False):
@@ -121,19 +123,19 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, in
     #         continue
     #     else:
     #         break
-    print(len(place_ids))
-    print(len(place_ids))
+
     ten_random_place_ids = random.sample(place_ids, 10)
     return ten_random_place_ids
 
 def save_photo_refs(my_place_id):
-    my_fields = ['name', 'photo', 'geometry/location/lat', 'geometry/location/lng']
+    my_fields = ['name', 'photo', 'geometry/location/lat', 'geometry/location/lng', 'vicinity']
     place_details = gmaps.place(place_id = my_place_id, fields = my_fields)
     place_id = my_place_id
     name = place_details['result']['name']
+    vicinity = place_details['result']['vicinity']
     lat = place_details['result']['geometry']['location']['lat']
     lng = place_details['result']['geometry']['location']['lng']
-    PlaceInfo.objects.update_or_create(place_id=place_id, name=name, lat=lat, lng=lng)
+    PlaceInfo.objects.update_or_create(place_id=place_id, name=name, vicinity=vicinity, lat=lat, lng=lng)
 
     photo_refs = []
     raw_data[my_place_id] = photo_refs

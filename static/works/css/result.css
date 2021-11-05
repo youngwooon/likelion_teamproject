@@ -33,6 +33,15 @@ a{
   text-align: center;
 }
 
+#vicinity{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  color: #cda45e;
+  padding-top:5rem;
+  padding-bottom: 5rem;
+  text-align: center;
+}
+
 #floating-panel {
   position: relative;
   width: fit-content;

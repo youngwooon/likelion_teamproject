@@ -37,15 +37,21 @@ function select2() {
 }
 
 function cancel() {
-    if (refs2.length == 0) {
-        exchange();
-        from_recovery();
-        refs2.pop();
-        input_images();
+    if (recovery.length == 0) {
+        void(0);
     } else {
-        from_recovery();
-        refs2.pop();
-        input_images();
+        if (refs2.length == 0) {
+            console.log(recovery.length);
+            exchange();
+            from_recovery();
+            refs2.pop();
+            input_images();
+        } else {
+            console.log(recovery.length);
+            from_recovery();
+            refs2.pop();
+            input_images();
+        }
     }
 }
 
@@ -56,8 +62,8 @@ function exchange () {
 }
 
 function input_images () {
-    document.getElementById('img1').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(0,1) + '&maxwidth=600&key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8';
-    document.getElementById('img2').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(-1) + '&maxwidth=600&key=AIzaSyAzbAG3wZN7pS2i0Dzs9MNzdqSfY7fvQF8';
+    document.getElementById('img1').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(0,1) + '&maxwidth=600&key=AIzaSyC7b2YqZPAx6_PSUGlSuXHGsYPJtA7mxxA';
+    document.getElementById('img2').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(-1) + '&maxwidth=600&key=AIzaSyC7b2YqZPAx6_PSUGlSuXHGsYPJtA7mxxA';
 }
 
 function to_recovery () {

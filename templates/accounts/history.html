@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}hitory{% endblock %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/history.css' %}">{% endblock %}
+{% block content %}
+
+<table>
+    {% for history in history_all %}
+    <tr>
+        <td>{{ history.created_at }}</td>
+        <td>{{ history.name }}</td>
+        <td>{{ history.vicinity }}</td>
+</tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
