@@ -42,6 +42,7 @@ html, body {
 #div_img1, #div_img2 {
     border: solid 2px #cda45e;
     width: 35%;
+    max-height: 50vh;
     margin: 2rem;
     padding: 1rem;
     justify-content: center;
@@ -64,14 +65,8 @@ html, body {
 
 .row {
     display: flex;
-    text-align: center;
-}
-
-/* Clear floats after image containers */
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 @media screen and (max-width: 600px) {

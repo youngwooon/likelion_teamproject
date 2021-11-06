@@ -30,9 +30,8 @@
     
     <div class="column">
         <div class="title">
-            <h1><span class="menu">Menus</span> <span class="tournament">Tournament</span> Nearby<br>
-                <span class="subtitle">Choose 1 <span class="menu">Menu</span> from Random Menus nearby</span>
-            </h1>
+            <h1><span class="menu">Menus</span> <span class="tournament">Tournament</span> Nearby</h1>
+                <span class="subtitle"><span class="subtitle-1">Choose 1 Menu</span> from Random Menus nearby</span>
         </div>
     </div>
 
@@ -47,24 +46,24 @@
                     <input type="text" class="form-control" id="search_input" placeholder="Input Your Location" required />
                     <input type="hidden" name="latitude" id="loc_lat" />
                     <input type="hidden" name="longitude" id="loc_long" />
-                </div><br>
+                </div>
                 <div class="form">
                     <label for="radius"></label>
                     <input type="text" class="form-control" id="radius"name="radius" placeholder="Radius" required>
-                </div><br>
+                </div>
                 <div class="form">
                     <label for="round"></label>
                     <select id="round" name="round" required>
                         <option value="4">Round of 4 (Semi-Final)</option>
                         <option value="8">Round of 8 (Quarter-Final)</option>
                     </select>
-                </div><br>
+                </div>
                 <div class="form">
                     <label for="max_price">Price level</label>
                     <input type="range" id="max_price" name="max_price" min="2" max="4">
-                </div><br>
+                </div>
                 <div class="form">
-                    <input type="checkbox" class="chk-btn" name="open_now" id="open" value="Ture" /><label for="open">OPENED NOW</label>
+                    <input type="checkbox" class="chk-btn" name="open_now" id="open" value="True" /><label for="open" id="open-now">OPEN NOW</label>
                 </div><br>
                     <input type="submit" id="submit-btn" value="Search!" />
             </div>
@@ -73,7 +72,9 @@
     </div>
 
 </div>
+<div class="error">
     {% if error %}
     {{ error }}
     {% endif %}
+</div>
 {% endblock %}

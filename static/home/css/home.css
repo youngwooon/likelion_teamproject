@@ -17,17 +17,19 @@ body{
     flex: 50%;
     padding: 15px;
     text-align: center;
+    margin-bottom: 3rem;
 }
 
 .row {
     display: block;
+    height: fit-content;
 }
 
 .title h1 {
     text-transform: capitalize;
     color: #cda45e;
-    font-size: 3rem;
-    margin-top: 30px;
+    font-size: 4.5rem;
+    margin: 5rem auto;
     margin-bottom: 0;
 }
 
@@ -59,12 +61,11 @@ label {
 .form-group {
     margin: auto;
     text-align: center;
-
+    
 }
 .form input {
     border-color: #cda45e;
 	background: black;
-	display: white;
 	margin-top: 10px;
 	text-align: center;
 	border: 1.8px solid #cda45e;
@@ -83,7 +84,14 @@ label {
     text-align: center;
 }
 
-#max_price, #round {
+#max_price{
+    width: 10%;
+    height: 1.3rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+#round {
     width: 10%;
     height: 1.5rem;
     font-size: 1rem;
@@ -134,6 +142,10 @@ input.chk-btn:checked + label {
 
 #open {
     display: none;
+}
+
+#open-now {
+    padding: 1px;
 }
 
 
@@ -255,6 +267,11 @@ input[type=range] {
 }
 }
 
+.error {
+    text-align: center;
+    color: red;
+    font-size: 1rem;
+}
 
 @media screen and (max-width: 600px) {
     .row {
@@ -262,8 +279,39 @@ input[type=range] {
         text-align: center;
     }
 
-    span .menu:after, span .tournament:after {
+    title span.menu:after, title span.tournament:after, .subtitle-1:after {
         content: "\A";
         white-space: pre;
     }
+
+    #search_input, #radius{
+        width: 70%;
+        height: fit-content;
+        font-size: 1rem;
+    }
+    
+    #max_price{
+        height: fit-content;
+        font-size: 1rem;
+    }
+
+    #round {
+        width: 80%;
+        height: fit-content;
+        font-size: 1rem;
+    }
+
+    .column {
+        margin-bottom: 0rem;
+    }
+
+    .title h1 {
+        font-size: 2rem;
+    }
+
+    #submit-btn {
+        width: fit-content;
+    }
+
+    
 }

@@ -3,22 +3,29 @@
 {% block title %}My History{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/history.css' %}">{% endblock %}
 {% block content %}
-<div>
+<table class="container">
+    <tr class="up-item">
+        <th id="up-item-1">Date</th><br>
+        <th id="up-item-2">Name</th><br>
+        <th class="adrs" id="up-item-3">Address</th>
+    </tr>
 {% if history_all %}
     {% for history in history_all %}
-        <div>
-            <td>{{ history.created_at }}</td>
-            <td>{{ history.name }}</td>
-            <td>{{ history.vicinity }}</td>
+    <tr class="down-item">
+        <td>{{ history.created_at }}</td>
+        <td id="td-2">{{ history.name }}</td>
+        <td class="adrs">{{ history.vicinity }}</td>
     </tr>
         {% endfor %}
     </table>
     <form action="{% url 'accounts:delete' %}" method="POST">
         {% csrf_token %}
-    <input type="submit" value="RESET" onclick="return confirm('reset?')">
+    <div class="reset">
+    <input type="submit" class="btn-reset" value="RESET" onclick="return confirm('reset?')">
+    </div>
     </form>
 {% else %}
-None
+<h3 class="none">None</h3>
 {% endif %}
 </div>
 {% endblock %}

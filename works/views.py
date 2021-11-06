@@ -109,20 +109,20 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price, inpu
     )
 
     #### 첫 페이지만 수집하는 경우 (최대 20개 장소) ####
-    for place in places_result['results']:
-        place_ids.append(place['place_id'])
+    # for place in places_result['results']:
+    #     place_ids.append(place['place_id'])
 
     #### 모든 페이지 수집하는 경우 (최대 60개 장소) ####
-    # while True:
-    #     for place in places_result['results']:
-    #         place_ids.append(place['place_id'])
-    #     # 검색 결과가 20개 이상인 경우 다음 페이지 수집 / 로딩 시간 위한 시간 공백 설정
-    #     time.sleep(2)
-    #     if 'next_page_token' in list(places_result.keys()):
-    #         places_result = gmaps.places_nearby(page_token = places_result['next_page_token'])
-    #         continue
-    #     else:
-    #         break
+    while True:
+        for place in places_result['results']:
+            place_ids.append(place['place_id'])
+        # 검색 결과가 20개 이상인 경우 다음 페이지 수집 / 로딩 시간 위한 시간 공백 설정
+        time.sleep(2)
+        if 'next_page_token' in list(places_result.keys()):
+            places_result = gmaps.places_nearby(page_token = places_result['next_page_token'])
+            continue
+        else:
+            break
     ten_random_place_ids = random.sample(place_ids, 10)
     return ten_random_place_ids
 
