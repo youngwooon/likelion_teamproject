@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from home.views import index
 from works.views import get_food_refs, result
-from accounts.views import signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),

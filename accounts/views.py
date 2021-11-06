@@ -20,7 +20,7 @@ def signup(request):
             )
         else:
             context = {
-                'error': '비밀번호와 비밀번호 확인이 일치하지 않습니다.'
+                'error': 'please check your password again'
             }
             return render(request, 'accounts/signup.html', context)
         return redirect('home')
@@ -35,9 +35,13 @@ def login(request):
         user = authenticate(request, username=username, password=password) # 장고 제공하는 사옹자 확인 함수
         if user is not None:
             auth_login(request, user) # 장고에서 제공하는 로그인 처리 함수
+            # context = {
+            #     'username': username
+            # }
+            # return render(request, 'home/home.html', context)
             return redirect('home')
         else:
-            context = {'error': 'Wrong ID and/or PASSWORD'}
+            context = {'error': 'invalid ID and/or PASSWORD'}
             return render(request, 'accounts/login.html', context)
     else:
         # GET 요청일 경우 로그인 HTML 응답
@@ -55,3 +59,10 @@ def history(request):
         'history_all': history_all
     }
     return render(request, 'accounts/history.html', context)
+
+@login_required
+def delete(request):
+    history_all = PlaceSelected.objects.filter(user=request.user)
+    if request.method == 'POST':
+        history_all.delete()
+        return redirect('accounts:history')

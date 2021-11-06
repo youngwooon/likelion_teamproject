@@ -30,8 +30,7 @@
     
     <div class="column">
         <div class="title">
-            <h1>
-                <span class="menu">Menus</span> <span class="tournament">Tournament</span> Nearby<br>
+            <h1><span class="menu">Menus</span> <span class="tournament">Tournament</span> Nearby<br>
                 <span class="subtitle">Choose 1 <span class="menu">Menu</span> from Random Menus nearby</span>
             </h1>
         </div>
@@ -48,25 +47,25 @@
                     <input type="text" class="form-control" id="search_input" placeholder="Input Your Location" required />
                     <input type="hidden" name="latitude" id="loc_lat" />
                     <input type="hidden" name="longitude" id="loc_long" />
-                </div>
+                </div><br>
                 <div class="form">
                     <label for="radius"></label>
-                    <input type="text" id="radius" name="radius" placeholder="Radius" required/>
-                </div>
+                    <input type="text" class="form-control" id="radius"name="radius" placeholder="Radius" required>
+                </div><br>
                 <div class="form">
                     <label for="round"></label>
                     <select id="round" name="round" required>
                         <option value="4">Round of 4 (Semi-Final)</option>
                         <option value="8">Round of 8 (Quarter-Final)</option>
                     </select>
-                </div>
+                </div><br>
                 <div class="form">
                     <label for="max_price">Price level</label>
                     <input type="range" id="max_price" name="max_price" min="2" max="4">
-                </div>
+                </div><br>
                 <div class="form">
                     <input type="checkbox" class="chk-btn" name="open_now" id="open" value="Ture" /><label for="open">OPENED NOW</label>
-                </div>
+                </div><br>
                     <input type="submit" id="submit-btn" value="Search!" />
             </div>
         </form>
@@ -74,4 +73,7 @@
     </div>
 
 </div>
+    {% if error %}
+    {{ error }}
+    {% endif %}
 {% endblock %}

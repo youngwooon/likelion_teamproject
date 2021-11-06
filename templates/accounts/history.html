@@ -1,17 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}hitory{% endblock %}
+{% block title %}My History{% endblock %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/history.css' %}">{% endblock %}
 {% block content %}
-
-<table>
+<div>
+{% if history_all %}
     {% for history in history_all %}
-    <tr>
-        <td>{{ history.created_at }}</td>
-        <td>{{ history.name }}</td>
-        <td>{{ history.vicinity }}</td>
-</tr>
-    {% endfor %}
-</table>
-
+        <div>
+            <td>{{ history.created_at }}</td>
+            <td>{{ history.name }}</td>
+            <td>{{ history.vicinity }}</td>
+    </tr>
+        {% endfor %}
+    </table>
+    <form action="{% url 'accounts:delete' %}" method="POST">
+        {% csrf_token %}
+    <input type="submit" value="RESET" onclick="return confirm('reset?')">
+    </form>
+{% else %}
+None
+{% endif %}
+</div>
 {% endblock %}

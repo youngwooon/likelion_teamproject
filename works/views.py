@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import googlemaps # pip install googlemaps
 import pprint # pip install prettyprint
 import time
@@ -33,43 +33,48 @@ def get_food_refs(request):
     input_max_price = request.POST['max_price']
     input_open_now = bool(request.POST.get('open_now'))
 
-    print(input_max_price)
-    print(input_open_now)
-    # 1. place id 수집
-    ten_random_place_ids = get_ten_random_place_ids(input_location, input_radius, input_max_price, input_open_now)
-    pprint.pprint(ten_random_place_ids)
-    print(len(ten_random_place_ids))
+    try:
+        # 1. place id 수집
+        ten_random_place_ids = get_ten_random_place_ids(input_location, input_radius, input_max_price, input_open_now)
+        # pprint.pprint(ten_random_place_ids)
+        # print(len(ten_random_place_ids))
 
-    # 2. photo refs 수집 및 셔플
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(save_photo_refs, ten_random_place_ids)
-    photo_refs_all = sum(raw_data.values(), [])
-    random.shuffle(photo_refs_all)
-    print(photo_refs_all)
-    print(len(photo_refs_all))
+        # 2. photo refs 수집 및 셔플
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            executor.map(save_photo_refs, ten_random_place_ids)
+        photo_refs_all = sum(raw_data.values(), [])
+        random.shuffle(photo_refs_all)
+        # print(photo_refs_all)
+        # print(len(photo_refs_all))
 
-    # 3. 음식사진 선별하여 저장
+        # 3. 음식사진 선별하여 저장
 
-    #### 1개씩 선별하는 경우 ####
-    # save_food_refs(photo_refs_all, input_round)
+        #### 1개씩 선별하는 경우 ####
+        # save_food_refs(photo_refs_all, input_round)
 
-    #### 2개 이상씩 선별하는 경우 (Thread) ####
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        split_num = round(len(photo_refs_all)/2)
-        arguments = [[photo_refs_all[:split_num], photo_refs_all[split_num:]],
-            [input_round,input_round]]
-        executor.map(save_food_refs, *arguments)
-    
-    # 4. 결과값 변수에 지정
-    new_food_refs = dict(list(food_refs.items())[0:input_round])
-    first_img_ref = list(new_food_refs.keys())[0]
-    second_img_ref = list(new_food_refs.keys())[-1]
-    context = {
-        'result': new_food_refs,
-        'first_img_ref': first_img_ref,
-        'second_img_ref': second_img_ref
-    }
-    return render(request, 'works/choice.html', context)
+        #### 2개 이상씩 선별하는 경우 (Thread) ####
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            split_num = round(len(photo_refs_all)/2)
+            arguments = [[photo_refs_all[:split_num], photo_refs_all[split_num:]],
+                [input_round,input_round]]
+            executor.map(save_food_refs, *arguments)
+        
+        # 4. 결과값 변수에 지정
+        new_food_refs = dict(list(food_refs.items())[0:input_round])
+        first_img_ref = list(new_food_refs.keys())[0]
+        second_img_ref = list(new_food_refs.keys())[-1]
+        context = {
+            'result': new_food_refs,
+            'first_img_ref': first_img_ref,
+            'second_img_ref': second_img_ref
+        }
+        return render(request, 'works/choice.html', context)
+    except ValueError:
+        error = 'invalid location or radius'
+        context = {
+            'error': error
+        }
+        return render(request, 'home/home.html', context)
 
 def result(request):
     selected_photo_ref = request.POST['selected_photo_ref']
@@ -92,7 +97,7 @@ def result(request):
         PlaceSelected.objects.update_or_create(name=name, vicinity=vicinity, user=request.user)
     return render(request, 'works/result.html', context)
 
-def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, input_open_now=False):
+def get_ten_random_place_ids(input_location, input_radius, input_max_price, input_open_now=False):
     place_ids = []
     ten_random_place_ids = []
     places_result = gmaps.places_nearby(
@@ -102,11 +107,6 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, in
         open_now = input_open_now,
         type = 'restaurant'
     )
-
-    print(input_location)
-    print(input_radius)
-    print(input_max_price)
-    print(input_open_now)
 
     #### 첫 페이지만 수집하는 경우 (최대 20개 장소) ####
     for place in places_result['results']:
@@ -123,7 +123,6 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price=4, in
     #         continue
     #     else:
     #         break
-
     ten_random_place_ids = random.sample(place_ids, 10)
     return ten_random_place_ids
 
