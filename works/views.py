@@ -14,7 +14,7 @@ import imagehash # pip install imagehash
 from works.models import PlaceInfo, Food, NoFood, PlaceSelected
 from django.contrib.auth.models import User
 
-my_api_key='AIzaSyC7b2YqZPAx6_PSUGlSuXHGsYPJtA7mxxA'
+my_api_key=''
 gmaps = googlemaps.Client(key=my_api_key)
 
 def get_food_refs(request):
@@ -109,20 +109,20 @@ def get_ten_random_place_ids(input_location, input_radius, input_max_price, inpu
     )
 
     #### 첫 페이지만 수집하는 경우 (최대 20개 장소) ####
-    # for place in places_result['results']:
-    #     place_ids.append(place['place_id'])
+    for place in places_result['results']:
+        place_ids.append(place['place_id'])
 
     #### 모든 페이지 수집하는 경우 (최대 60개 장소) ####
-    while True:
-        for place in places_result['results']:
-            place_ids.append(place['place_id'])
-        # 검색 결과가 20개 이상인 경우 다음 페이지 수집 / 로딩 시간 위한 시간 공백 설정
-        time.sleep(2)
-        if 'next_page_token' in list(places_result.keys()):
-            places_result = gmaps.places_nearby(page_token = places_result['next_page_token'])
-            continue
-        else:
-            break
+    # while True:
+    #     for place in places_result['results']:
+    #         place_ids.append(place['place_id'])
+    #     # 검색 결과가 20개 이상인 경우 다음 페이지 수집 / 로딩 시간 위한 시간 공백 설정
+    #     time.sleep(2)
+    #     if 'next_page_token' in list(places_result.keys()):
+    #         places_result = gmaps.places_nearby(page_token = places_result['next_page_token'])
+    #         continue
+    #     else:
+    #         break
     ten_random_place_ids = random.sample(place_ids, 10)
     return ten_random_place_ids
 
@@ -158,18 +158,18 @@ def is_food(photo_ref):
 
     if Food.objects.filter(photo_hash=hash).exists():
         prediction = True
-        print("모델 FOOD")
+        # print("모델 FOOD")
     elif NoFood.objects.filter(photo_hash=hash).exists():
         prediction = False
-        print("모델 NOFOOD")
+        # print("모델 NOFOOD")
     elif model.predict(data)[0][0] >= 0.9:
         Food.objects.update_or_create(photo_hash=hash)
         prediction = True
-        print("FOOD")
+        # print("FOOD")
     else:
         NoFood.objects.update_or_create(photo_hash=hash)
         prediction = False
-        print("NOFOOD")
+        # print("NOFOOD")
     return prediction
 
 def save_food_refs(photo_refs_all, round):
@@ -182,7 +182,7 @@ def save_food_refs(photo_refs_all, round):
                     for key, value in raw_data.items():
                         if photo_ref in value:
                             food_refs[photo_ref] = key
-                            print(f'수집한 음식사진 개수: {len(food_refs)}')
+                            # print(f'수집한 음식사진 개수: {len(food_refs)}')
                 else:
                     pass
             except:

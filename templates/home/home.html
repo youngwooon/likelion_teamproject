@@ -4,7 +4,7 @@
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}" />{% endblock %}
 {% block script %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyC7b2YqZPAx6_PSUGlSuXHGsYPJtA7mxxA"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key={MY_API_KEY}"></script>
     <script>
         var searchInput = 'search_input';
         $(document).ready(function () {
@@ -50,21 +50,21 @@
                 <div class="form">
                     <label for="radius"></label>
                     <input type="text" class="form-control" id="radius"name="radius" placeholder="Radius" required>
-                </div>
-                <div class="form">
-                    <label for="round"></label>
-                    <select id="round" name="round" required>
-                        <option value="4">Round of 4 (Semi-Final)</option>
-                        <option value="8">Round of 8 (Quarter-Final)</option>
-                    </select>
-                </div>
-                <div class="form">
-                    <label for="max_price">Price level</label>
-                    <input type="range" id="max_price" name="max_price" min="2" max="4">
-                </div>
-                <div class="form">
-                    <input type="checkbox" class="chk-btn" name="open_now" id="open" value="True" /><label for="open" id="open-now">OPEN NOW</label>
-                </div><br>
+                    <div class="">
+                    <div class="form">
+                        <label for="round"></label>
+                        <select id="round" name="round" required>
+                            <option value="4">Round of 4 (Semi-Final)</option>
+                            <option value="8">Round of 8 (Quarter-Final)</option>
+                        </select>
+                    </div>
+                    <div class="form">
+                        <label for="max_price">Price level</label>
+                        <input type="range" id="max_price" name="max_price" min="2" max="4">
+                    </div>
+                    <div class="form">
+                        <input type="checkbox" class="chk-btn" name="open_now" id="open" value="True" /><label for="open" id="open-now">OPEN NOW</label>
+                    </div><br>
                     <input type="submit" id="submit-btn" value="Search!" />
             </div>
         </form>

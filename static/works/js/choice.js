@@ -62,8 +62,8 @@ function exchange () {
 }
 
 function input_images () {
-    document.getElementById('img1').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(0,1) + '&maxwidth=600&key=AIzaSyC7b2YqZPAx6_PSUGlSuXHGsYPJtA7mxxA';
-    document.getElementById('img2').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(-1) + '&maxwidth=600&key=AIzaSyC7b2YqZPAx6_PSUGlSuXHGsYPJtA7mxxA';
+    document.getElementById('img1').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(0,1) + '&maxwidth=600&key={MY_API_KEY}';
+    document.getElementById('img2').src = 'https://maps.googleapis.com/maps/api/place/photo?photoreference=' + refs1.slice(-1) + '&maxwidth=600&key={MY_API_KEY}';
 }
 
 function to_recovery () {
